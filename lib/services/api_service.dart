@@ -23,4 +23,21 @@ class ApiService {
       throw Exception('Kesalahan login: $e');
     }
   }
+
+  // Mendapatkan lokasi alat
+  Future<List<Map<String, dynamic>>> getAlatLocations() async {
+    final url = Uri.parse('$baseUrl/Alat');
+    try {
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        return data.cast<Map<String, dynamic>>();
+      } else {
+        throw Exception('Gagal mendapatkan lokasi alat: ${response.reasonPhrase}');
+      }
+    } catch (e) {
+      throw Exception('Kesalahan saat mengambil data alat: $e');
+    }
+  }
 }
