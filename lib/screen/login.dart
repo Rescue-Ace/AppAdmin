@@ -43,12 +43,14 @@ class _LoginScreenState extends State<LoginScreen> {
         // Ambil data pengguna
         String nama = response['nama'];
         String email = response['email'];
+        int idAdmin = response['id_admin'];
 
         // Buat map data pengguna untuk disimpan
         Map<String, dynamic> userData = {
           'nama': nama,
           'email': email,
           'telp': response['telp'] ?? '',
+          'id_admin' : idAdmin,
         };
 
         // Simpan data pengguna ke SharedPreferences

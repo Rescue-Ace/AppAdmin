@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'screen/homepage.dart';
 import 'screen/login.dart';
 import 'screen/splashscreen.dart';
-import 'screen/settings_screen.dart';
+import 'screen/editprofile.dart';
 import 'screen/add_alat_screen.dart';
 
 void main() {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         '/splash': (context) => const SplashScreen(),
         '/login': (context) => const LoginScreen(),
         '/home': (context) => const HomePage(user: {}),
-        '/settings': (context) => const SettingsScreen(),
+        '/editprofile': (context) => const EditProfileScreen(),
         '/add_alat': (context) => const AddAlatScreen(),
       },
     );

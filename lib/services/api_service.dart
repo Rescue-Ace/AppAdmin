@@ -40,4 +40,51 @@ class ApiService {
       throw Exception('Kesalahan saat mengambil data alat: $e');
     }
   }
+
+  Future<void> addAlat(Map<String, dynamic> alatData) async {
+    final url = Uri.parse('$baseUrl/Alat');
+    try {
+      final response = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode(alatData),
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        // Alat berhasil ditambahkan
+        print("Alat berhasil ditambahkan: ${response.body}");
+      } else {
+        // Gagal menambahkan alat
+        throw Exception(
+            'Gagal menambahkan alat: ${response.statusCode} ${response.reasonPhrase}');
+      }
+    } catch (e) {
+      throw Exception('Kesalahan saat menambahkan alat: $e');
+    }
+  }
+
+  Future<void> updateAdminProfile(int idAdmin, Map<String, dynamic> data) async {
+    final url = Uri.parse('$baseUrl/admin/$idAdmin');
+    final response = await http.put(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(data),
+    );
+    if (response.statusCode != 200) {
+      throw Exception('Gagal memperbarui profil');
+    }
+  }
+
+  Future<void> updateAdminPassword(int idAdmin, Map<String, dynamic> passwordData) async {
+    final url = Uri.parse('$baseUrl/admin/updatePassword/$idAdmin');
+    final response = await http.put(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(passwordData),
+    );
+    if (response.statusCode != 200) {
+      throw Exception('Gagal mengganti password');
+    }
+  }
+
 }
