@@ -51,8 +51,6 @@ class ApiService {
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        // Alat berhasil ditambahkan
-        print("Alat berhasil ditambahkan: ${response.body}");
       } else {
         // Gagal menambahkan alat
         throw Exception(

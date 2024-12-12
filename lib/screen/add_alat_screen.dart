@@ -43,6 +43,7 @@ class _AddAlatScreenState extends State<AddAlatScreen> {
       try {
         await _apiService.addAlat(alatData);
         showDialog(
+          // ignore: use_build_context_synchronously
           context: context,
           builder: (context) {
             return AlertDialog(
@@ -62,6 +63,7 @@ class _AddAlatScreenState extends State<AddAlatScreen> {
         );
       } catch (e) {
         showDialog(
+          // ignore: use_build_context_synchronously
           context: context,
           builder: (context) {
             return AlertDialog(
@@ -86,79 +88,81 @@ class _AddAlatScreenState extends State<AddAlatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back, color: Color(0xFF4872B1)),
-                    onPressed: () => Navigator.of(context).pop(),
-                  ),
-                ],
-              ),
-              Center(
-                child: Image.asset(
-                  'assets/images/logo2.png',
-                  width: 80,
-                  height: 80,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back, color: Color(0xFF4872B1)),
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                  ],
                 ),
-              ),
-              const SizedBox(height: 16),
-              const Center(
-                child: Text(
-                  "Tambah Alat",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF4872B1),
+                Center(
+                  child: Image.asset(
+                    'assets/images/logo2.png',
+                    width: 80,
+                    height: 80,
                   ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              _buildTextField(_namaPic1Controller, "Nama PIC 1"),
-              const SizedBox(height: 10),
-              _buildTextField(_telpPic1Controller, "Nomor Telepon PIC 1"),
-              const SizedBox(height: 10),
-              _buildTextField(_namaPic2Controller, "Nama PIC 2"),
-              const SizedBox(height: 10),
-              _buildTextField(_telpPic2Controller, "Nomor Telepon PIC 2"),
-              const SizedBox(height: 10),
-              _buildTextField(_alamatController, "Alamat Alat"),
-              const SizedBox(height: 10),
-              _buildTextField(_linkMapController, "Link Map"),
-              const SizedBox(height: 10),
-              _buildTextField(_longitudeController, "Longitude"),
-              const SizedBox(height: 10),
-              _buildTextField(_latitudeController, "Latitude"),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: _isSubmitting ? null : _submitForm,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF4872B1),
-                    padding: const EdgeInsets.symmetric(vertical: 15),
+                const SizedBox(height: 16),
+                const Center(
+                  child: Text(
+                    "Tambah Alat",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF4872B1),
+                    ),
                   ),
-                  child: _isSubmitting
-                      ? const CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            Colors.white,
+                ),
+                const SizedBox(height: 20),
+                _buildTextField(_namaPic1Controller, "Nama PIC 1"),
+                const SizedBox(height: 10),
+                _buildTextField(_telpPic1Controller, "Nomor Telepon PIC 1"),
+                const SizedBox(height: 10),
+                _buildTextField(_namaPic2Controller, "Nama PIC 2"),
+                const SizedBox(height: 10),
+                _buildTextField(_telpPic2Controller, "Nomor Telepon PIC 2"),
+                const SizedBox(height: 10),
+                _buildTextField(_alamatController, "Alamat Alat"),
+                const SizedBox(height: 10),
+                _buildTextField(_linkMapController, "Link Map"),
+                const SizedBox(height: 10),
+                _buildTextField(_longitudeController, "Longitude"),
+                const SizedBox(height: 10),
+                _buildTextField(_latitudeController, "Latitude"),
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: _isSubmitting ? null : _submitForm,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF4872B1),
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                    ),
+                    child: _isSubmitting
+                        ? const CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              Colors.white,
+                            ),
+                          )
+                        : const Text(
+                            "Konfirmasi",
+                            style: TextStyle(fontSize: 18, color: Colors.white),
                           ),
-                        )
-                      : const Text(
-                          "Konfirmasi",
-                          style: TextStyle(fontSize: 18, color: Colors.white),
-                        ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
