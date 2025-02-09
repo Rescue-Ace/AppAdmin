@@ -17,9 +17,12 @@ class _AddAlatScreenState extends State<AddAlatScreen> {
   final TextEditingController _namaPic2Controller = TextEditingController();
   final TextEditingController _telpPic2Controller = TextEditingController();
   final TextEditingController _alamatController = TextEditingController();
+  final TextEditingController _telpAlatController = TextEditingController();
   final TextEditingController _linkMapController = TextEditingController();
   final TextEditingController _longitudeController = TextEditingController();
   final TextEditingController _latitudeController = TextEditingController();
+  
+
 
   bool _isSubmitting = false;
 
@@ -35,6 +38,7 @@ class _AddAlatScreenState extends State<AddAlatScreen> {
         "nama_pic2": _namaPic2Controller.text,
         "telp_pic2": _telpPic2Controller.text,
         "alamat": _alamatController.text,
+        "telp": _telpAlatController.text,
         "link_maps": _linkMapController.text,
         "longitude": double.tryParse(_longitudeController.text),
         "latitude": double.tryParse(_latitudeController.text),
@@ -134,6 +138,8 @@ class _AddAlatScreenState extends State<AddAlatScreen> {
                 _buildTextField(_telpPic2Controller, "Nomor Telepon PIC 2"),
                 const SizedBox(height: 10),
                 _buildTextField(_alamatController, "Alamat Alat"),
+                const SizedBox(height: 10),
+                _buildTextField(_telpAlatController, "Nomor Telepon Alat"),
                 const SizedBox(height: 10),
                 _buildTextField(_linkMapController, "Link Map"),
                 const SizedBox(height: 10),
